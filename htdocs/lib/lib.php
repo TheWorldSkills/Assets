@@ -1,5 +1,5 @@
 <?php 
-	// db 가져오기
+	// db 가져오기  array 부터는 안 써도 됨
 	$pdo = new PDO("mysql:host=localhost;dbname=2019_03_04blog2;charset=utf8" , "root" , "" , array(
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
@@ -9,14 +9,14 @@
 	header("content-type:text/html;charset=utf-8");
 	date_default_timezone_set('Asia/Seoul');
 
-	// 주소 가져오기
+	// 주소 가져오기 로직 
 	$varray = isset($_GET['uri']) ? explode('/', $_GET['uri']) : null;
 	$pagemode = isset($varray[0]) ? $varray[0] : null;
 	$midx = isset($varray[1]) ? $varray[1] : 'main';
 	$page = isset($varray[3]) ? $varray[3] : 1;
 
-	// db
-	function execute($sql , $parame = null)
+	// db # 표시는 안 써도 
+	function execute($sql , $parame = null) // #
 	{
 		global $pdo;
 		$data = $pdo->prepare($sql);
@@ -24,18 +24,18 @@
 		return $data;
 	}
 
-	function fetch($sql , $parame = null)
+	function fetch($sql , $parame = null) // #
 	{
 		return execute($sql , $parame)->fetch();
 	}
 
 
-	function fetchAll($sql , $parame = null)
+	function fetchAll($sql , $parame = null) // #
 	{
 		return execute($sql , $parame)->fetchAll();
 	}
 
-	function rowCount($sql , $parame = null)
+	function rowCount($sql , $parame = null) // #
 	{
 		return execute($sql , $parame)->rowCount();
 	}
